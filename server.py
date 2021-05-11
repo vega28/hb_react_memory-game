@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 def homepage():
     """ Render app. """
 
-    return('hi')
+    return render_template('app.html')
 
 
 if __name__ == '__main__':
