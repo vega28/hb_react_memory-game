@@ -1,4 +1,10 @@
-function Card({word, color, id, onClick}){
+function Card({word, color, id, onClick, isSelected}){
+  const [isNew, updateIsNew] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => updateIsNew(false), 3000);
+  }, []);
+
   return(
     <div 
       className='card' 
@@ -6,7 +12,7 @@ function Card({word, color, id, onClick}){
       style={{color: color}}
       onClick={onClick}
     >
-      {word}
+      {isSelected || isNew ? word : ''}
     </div>
   );
 }

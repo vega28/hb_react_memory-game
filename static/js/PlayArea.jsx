@@ -13,7 +13,7 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
         // check card.word matches a previous selection
         if (selected[0].word === selected[1].word){
           console.log('found match', selected[0].word)
-          removeValidPair(selected);
+          setTimeout(() => removeValidPair(selected), 1000);
         } else {
           setTimeout(() => updateSelectedCards([]), 1000);
         }
@@ -59,6 +59,7 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
           key={card.id}
           color={card.color}
           word={card.word}
+          isSelected={selectedCards.includes(card)}
           onClick={selectedCards.includes(card) ? null: () => selectCard(card)} // ternary expression to keep you from clicking on the same card twice to remove it!
           // need to wrap event handler in a callback function since we need to specify card as an argument, otherwise it'll execute immediately (not on click)
           // if we didn't need an argument, we could just write onClick={selectCard} with NO PARENS
