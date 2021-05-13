@@ -2,7 +2,7 @@ function Card({word, color, id, onClick, isSelected}){
   const [isNew, updateIsNew] = React.useState(true);
 
   React.useEffect(() => {
-    setTimeout(() => updateIsNew(false), 3000);
+    setTimeout(() => updateIsNew(false), 1000);
   }, []);
 
   return(

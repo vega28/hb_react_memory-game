@@ -15,7 +15,7 @@ def homepage():
 def generate_cards():
     """ Return a JSON of new cards for memory game. """
 
-    cards = create_cards(20)
+    cards = create_cards(10)
     shuffle(cards)
     return jsonify(cards) # may not be needed anymore, flask might automatically make dicts into jsons
 

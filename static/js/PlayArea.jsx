@@ -1,6 +1,13 @@
 function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
   const [selectedCards, updateSelectedCards] = React.useState([]);
 
+  React.useEffect(() => {
+    let setOfCards = new Set(cardsInPlay);
+    if (setOfCards.size == 1 && setOfCards.has(null)){
+      alert(`Congrats, you win! 🌈`);
+    }
+  }, [cardsInPlay]);
+
   function selectCard(card){
     // select 1, then check a second selection
     if (selectedCards.length < 2){
