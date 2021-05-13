@@ -7,7 +7,7 @@ function Card({word, color, id, onClick, isSelected}){
 
   return(
     <div 
-      className='card' 
+      className={`card ${ isSelected || isNew ? 'selected' : 'card-back'}`} 
       id={id} 
       style={{color: color}}
       onClick={onClick}
