@@ -1,30 +1,20 @@
-function PlayArea(){
-  const [cardData, updateCardData] = React.useState([]); /* array destructuring */
-  const [cardsInPlay, updateCardsInPlay] = React.useState([]);
-
-  React.useEffect( () => {
-    fetch('/cards.json')
-    .then((res) => res.json())
-    .then((data) => {
-        console.log(data);
-        updateCardData(data); /* hey react, hold onto this, we'll wanna use it later */
-        //   cards.push(<Card color=data.color word=data.word />)
-    })
-  }, []);
-
-//   updateCardsInPlay(cardData.slice(0,16));
+function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
 
   return(
     <div id='play-area'>
-      {cardData.map(card => {
+      {/* (explanation of comment below!)
+          option 1: 
+            param => returnVal
+          option 2:
+            param => { return returnVal } 
+      */}
+      {cardsInPlay.map(card => // with a fcn expr, if we use curly braces, need explicit return statement! (or do it this way with no curly braces)
           <Card
           key={card.id}
           color={card.color}
           word={card.word}
           />
-      })}
-      {/* <Card color={cardData[0].color} word={cardData[0].word} /> */}
-      <Card id='0b' color='blue' word='badwolf' />
+      )} {/* map the array of cards to an array of card React components */}
     </div>
   );
 }
