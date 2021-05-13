@@ -34,6 +34,8 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
         if (newCards.length > 0){
           // update the cards in play --> remove the pair
           replacementCards.push(newCards.pop());
+        } else {
+          replacementCards.push(null);
         }
       } else {
         replacementCards.push(card);
@@ -56,14 +58,16 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
             param => { return returnVal } 
       */}
       {cardsInPlay.map(card => // with a fcn expr, if we use curly braces, need explicit return statement! (or do it this way with no curly braces)
-          <Card
-          key={card.id}
-          color={card.color}
-          word={card.word}
-          isSelected={selectedCards.includes(card)}
-          onClick={selectedCards.includes(card) ? null: () => selectCard(card)} // ternary expression to keep you from clicking on the same card twice to remove it!
-          // need to wrap event handler in a callback function since we need to specify card as an argument, otherwise it'll execute immediately (not on click)
-          // if we didn't need an argument, we could just write onClick={selectCard} with NO PARENS
+        card ? <Card
+            key={card.id}
+            color={card.color}
+            word={card.word}
+            isSelected={selectedCards.includes(card)}
+            onClick={selectedCards.includes(card) ? null: () => selectCard(card)} // ternary expression to keep you from clicking on the same card twice to remove it!
+            // need to wrap event handler in a callback function since we need to specify card as an argument, otherwise it'll execute immediately (not on click)
+            // if we didn't need an argument, we could just write onClick={selectCard} with NO PARENS
+          /> : <div 
+            className='card' 
           />
       )} {/* map the array of cards to an array of card React components */}
     </div>
