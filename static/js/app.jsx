@@ -5,6 +5,7 @@ function App() {
       {/* App is now responsible for rendering the header! */}
       <h1>Hello World 🌍</h1>
       {/* this is like our main */}
+      <Main />
       <Footer />
       {/* App is now responsible for rendering the footer! */}
     </React.Fragment>
