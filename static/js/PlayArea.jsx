@@ -13,10 +13,37 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
         // check card.word matches a previous selection
         if (selected[0].word === selected[1].word){
           console.log('found match', selected[0].word)
+          removeValidPair(selected);
+        } else {
+          setTimeout(() => updateSelectedCards([]), 1000);
         }
-        setTimeout(() => updateSelectedCards([]), 1000);
       }
     }
+  }
+
+  function removeValidPair(pairOfCards) {
+    const replacementCards = [];
+    const numNewCards = 16 - cardsInPlay.length + 2 ;
+    const newCards = deck.slice(deck.length - numNewCards); // gives us the last two cards
+
+    // iterate over all cards in play
+    //    check if they are the ones to keep or to change
+    for (const card of cardsInPlay) {
+      if (pairOfCards.includes(card)) {
+        if (newCards.length > 0){
+          // update the cards in play --> remove the pair
+          replacementCards.push(newCards.pop());
+        }
+      } else {
+        replacementCards.push(card);
+      }
+    }
+
+    // get a new pair of cards out of the deck
+    updateDeck(deck.slice(0, deck.length - numNewCards));
+    // put the new cards into play
+    updateCardsInPlay(replacementCards);
+    setTimeout(() => updateSelectedCards([]), 1000); // dealing with timing - make sure this happens in a timely way
   }
 
   return(
@@ -32,7 +59,7 @@ function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
           key={card.id}
           color={card.color}
           word={card.word}
-          onClick={() => selectCard(card)} 
+          onClick={selectedCards.includes(card) ? null: () => selectCard(card)} // ternary expression to keep you from clicking on the same card twice to remove it!
           // need to wrap event handler in a callback function since we need to specify card as an argument, otherwise it'll execute immediately (not on click)
           // if we didn't need an argument, we could just write onClick={selectCard} with NO PARENS
           />
