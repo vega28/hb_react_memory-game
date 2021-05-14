@@ -35,7 +35,9 @@ function Main(){
           deck={deck} 
           updateDeck={updateDeck} 
           cardsInPlay={cardsInPlay} 
-          updateCardsInPlay={updateCardsInPlay} 
+          updateCardsInPlay={updateCardsInPlay}
+          playing={playing}
+          updatePlaying={updatePlaying} 
         /> 
         {/* in component above we're saying the parent's component will also be the childs componenet */}
       </React.Fragment>

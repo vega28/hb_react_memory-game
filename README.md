@@ -10,4 +10,4 @@
 - [ ] Score for how many clicks to complete game
 - [ ] Count number of pairs
 - [ ] Change background or card backs
-- [ ] Add re-deal button at end of game
+- [ ] Add re-deal button at end of game - WIP

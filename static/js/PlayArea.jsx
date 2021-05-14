@@ -1,10 +1,11 @@
-function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay}){
+function PlayArea({deck, updateDeck, cardsInPlay, updateCardsInPlay, playing, updatePlaying}){
   const [selectedCards, updateSelectedCards] = React.useState([]);
 
   React.useEffect(() => {
     let setOfCards = new Set(cardsInPlay);
     if (setOfCards.size == 1 && setOfCards.has(null)){
       alert(`Congrats, you win! 🌈`);
+      updatePlaying(false); // this is partially working - the fetch is not happening to update the deck!
     }
   }, [cardsInPlay]);
 
