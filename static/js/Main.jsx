@@ -19,9 +19,18 @@ function Main(){
     updateDeck(deck.slice(16, deck.length));
   }
 
+  // try putting this block into a useEffect so it doesn't run EVERY TIME
+  let tableCardsSet = new Set(cardsInPlay);
+  let tableCount = tableCardsSet.size;
+  if (tableCardsSet.has(null)) {
+    tableCount --;
+  } 
+
   if (playing){
     return(
       <React.Fragment>
+        <p id='deck-count'>{deck.length} Cards in Deck</p>
+        <p id='table-count'>{tableCount} Cards on Table</p>
         <PlayArea 
           deck={deck} 
           updateDeck={updateDeck} 
