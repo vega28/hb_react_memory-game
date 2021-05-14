@@ -8,4 +8,6 @@
 - [x] Some kind of win alert/reaction
 - [ ] Score for how many clicks to complete game
 - [ ] Show count for deck size that's left
+- [ ] Count number of pairs
 - [ ] Change background or card backs
+- [ ] Add re-deal button at end of game
